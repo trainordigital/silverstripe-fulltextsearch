@@ -13,8 +13,8 @@ Solr::configure_server([
     'path' => '/solr', // The suburl the Solr service is available on
     'version' => '4', // Solr server version - currently only 3 and 4 supported
     'service' => 'Solr4Service', // The class that provides actual communcation to the Solr server
-    'extraspath' => BASE_PATH .'/vendor/silverstripe/fulltextsearch/conf/solr/4/extras/', // Absolute path to the folder containing templates used for generating the schema and field definitions
-    'templates' => BASE_PATH . '/vendor/silverstripe/fulltextsearch/conf/solr/4/templates/', // Absolute path to the configuration default files, e.g. solrconfig.xml
+    'extraspath' => BASE_PATH .'/vendor/trainordigital/fulltextsearch/conf/solr/4/extras/', // Absolute path to the folder containing templates used for generating the schema and field definitions
+    'templates' => BASE_PATH . '/vendor/trainordigital/fulltextsearch/conf/solr/4/templates/', // Absolute path to the configuration default files, e.g. solrconfig.xml
     'indexstore' => [
         'mode' => NULL, // [REQUIRED] a classname which implements SolrConfigStore, or 'file' or 'webdav'
         'path' => NULL, // [REQUIRED] The (locally accessible) path to write the index configurations to OR The suburl on the Solr host that is set up to accept index configurations via webdav (e.g. BASE_PATH . '/.solr')
@@ -141,7 +141,7 @@ Alternatively, you can index draft content, but simply exclude it from searches.
 ### Adding DataObjects
 
 If you create a class that extends `DataObject` (and not `Page`) then it won't be automatically added to the search
-index. You'll have to make some changes to add it in. The `DataObject` class will require the following minimum code 
+index. You'll have to make some changes to add it in. The `DataObject` class will require the following minimum code
 to render properly in the search results:
 
 * `Link()` needs to return the URL to follow from the search results to actually view the object.
@@ -167,8 +167,8 @@ class MySolrSearchIndex extends SolrIndex {
 }
 ```
 
-Once you've created the above classes and run the [solr dev tasks](#solr-dev-tasks) to tell Solr about the new index 
-you've just created, this will add `SearchableDataObject` and the text fields it has to the index. Now when you search 
+Once you've created the above classes and run the [solr dev tasks](#solr-dev-tasks) to tell Solr about the new index
+you've just created, this will add `SearchableDataObject` and the text fields it has to the index. Now when you search
 on the site using `MySolrSearchIndex->search()`, the `SearchableDataObject` results will show alongside normal `Page`
 results.
 
@@ -185,7 +185,7 @@ It is often a good idea to run a configure, followed by a reindex, after a code 
 This task will upload configuration to the Solr core, reloading it or creating it as necessary, and generate the schema. This should be run after every code change to your indexes, or after any configuration changes. This will convert the PHP-based abstraction layer into actual Solr XML. Assuming default configuration and the use of the `DefaultIndex`, it will:
 
 - create the directory `BASE_PATH/.solr/DefaultIndex/` if it doesn't already exist
-- copy configuration files from `vendor/silverstripe/fulltextsearch/conf/extras` to `BASE_PATH/.solr/DefaultIndex/conf/`
+- copy configuration files from `vendor/trainordigital/fulltextsearch/conf/extras` to `BASE_PATH/.solr/DefaultIndex/conf/`
 - generate a `schema.xml` in `BASE_PATH/.solr/DefaultIndex/conf/`
 
 This task will overwrite these files every time it is run.

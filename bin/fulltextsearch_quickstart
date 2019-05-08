@@ -35,7 +35,7 @@ fi
 if [ ! -f "/etc/init.d/solr" ]; then
     echo "Installing Solr daemon..."
     # Set up the daemon so that solr will run on startup
-    sudo cp vendor/silverstripe/fulltextsearch/docs/examples/daemon_script /etc/init.d/solr 2> /dev/null
+    sudo cp vendor/trainordigital/fulltextsearch/docs/examples/daemon_script /etc/init.d/solr 2> /dev/null
     sudo chmod +x /etc/init.d/solr 2> /dev/null
     sudo chkconfig --add solr 2> /dev/null
 fi
@@ -85,7 +85,7 @@ fi
 if [ ! -f "$CODEDIR/FulltextSearch/DefaultIndex.php" ]; then
     echo "Creating default index..."
     mkdir -p "$CODEDIR/FulltextSearch"
-    cp vendor/silverstripe/fulltextsearch/docs/examples/default_index.php.example "$CODEDIR/FulltextSearch/DefaultIndex.php"
+    cp vendor/trainordigital/fulltextsearch/docs/examples/default_index.php.example "$CODEDIR/FulltextSearch/DefaultIndex.php"
 fi
 
 vendor/bin/sake dev/tasks/Solr_Configure
