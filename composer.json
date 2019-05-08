@@ -1,5 +1,5 @@
 {
-    "name": "silverstripe/fulltextsearch",
+    "name": "trainordigital/fulltextsearch",
     "description": "Adds support for Fulltext Search engines like Sphinx and Solr to SilverStripe CMS",
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
